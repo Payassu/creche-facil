@@ -1,0 +1,142 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   // 'PARENT' | 'INSTITUTION'
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  institution    Institution?
+  applications   Application[]
+  reviews        Review[]
+  sentMessages   Message[]     @relation("SentMessages")
+  notifications  Notification[]
+}
+
+model Institution {
+  id            String   @id @default(cuid())
+  name          String
+  description   String   @db.Text
+  address       String
+  city          String
+  state         String
+  zipCode       String
+  phone         String
+  email         String
+  website       String?
+  photos        String[] // Array of photo URLs
+  averageRating Float    @default(0)
+  totalReviews  Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  ownerId          String             @unique
+  owner            User               @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  applications     Application[]
+  applicationFields ApplicationField[]
+  reviews          Review[]
+  messages         Message[]
+
+  @@index([city, state])
+}
+
+model ApplicationField {
+  id          String   @id @default(cuid())
+  fieldName   String
+  fieldType   String   // text, number, date, file, textarea, select
+  required    Boolean  @default(false)
+  options     String[] // For select fields
+  order       Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  institutionId String
+  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+
+  @@index([institutionId])
+}
+
+model Application {
+  id            String   @id @default(cuid())
+  status        String   @default("PENDING") // 'PENDING' | 'UNDER_REVIEW' | 'APPROVED' | 'REJECTED'
+  submittedData Json     // Store form data as JSON
+  documents     String[] // Array of document URLs
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  parentId      String
+  parent        User        @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  institutionId String
+  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+
+  @@index([parentId])
+  @@index([institutionId])
+  @@index([status])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  rating    Int      // 1-5
+  comment   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  // Relations
+  parentId      String
+  parent        User        @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  institutionId String
+  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+
+  @@index([institutionId])
+  @@index([parentId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  type      String   // 'APPLICATION_RECEIVED' | 'APPLICATION_STATUS_CHANGED' | 'NEW_MESSAGE' | 'NEW_REVIEW'
+  title     String
+  message   String   @db.Text
+  read      Boolean  @default(false)
+  relatedId String?  // Optional ID of related entity
+  createdAt DateTime @default(now())
+
+  // Relations
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, read])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  subject   String
+  content   String   @db.Text
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  // Relations
+  senderId      String
+  sender        User        @relation("SentMessages", fields: [senderId], references: [id], onDelete: Cascade)
+  institutionId String
+  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade)
+
+  @@index([senderId])
+  @@index([institutionId])
+}
