@@ -1,11 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
-import HomePage from './pages/shared/home_page';
-import InstitutionSearch from './pages/shared/institution_search';
-import InstitutionDetail from './pages/shared/institution_detail';
+import HomePage from './pages/shared/home-page.tsx';
+import InstitutionSearch from './pages/shared/institution-search.tsx';
+import InstitutionDetail from './pages/shared/institution-detail.tsx';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import ParentDashboard from './pages/parent/parent_dashboard';
-import InstitutionDashboard from './pages/institution/institution_dashboard';
+import InstitutionDashboard from './pages/institution/institution-dashboard.tsx';
 
 export const router = createBrowserRouter([
   {
