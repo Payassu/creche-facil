@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 import HomePage from './pages/shared/home-page.tsx';
-import InstitutionSearch from './pages/shared/institution-search.tsx';
-import InstitutionDetail from './pages/shared/institution-detail.tsx';
+import InstitutionSearch from './pages/institution/institution-search.tsx';
+import InstitutionDetail from './pages/institution/institution-detail.tsx';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
 import ParentDashboard from './pages/parent/parent_dashboard';
@@ -15,6 +15,8 @@ export const router = createBrowserRouter([
   {
     path: '/search',
     element: <InstitutionSearch />,
+    // loader
+    // errorElement
   },
   {
     path: '/institution/:id',
