@@ -35,7 +35,7 @@ src/
 - **institution-detail.tsx**: View detailed information about an institution
 - **login.tsx**: Authentication page
 - **register.tsx**: User registration page
-- **parent_dashboard.tsx**: Dashboard for parents
+- **parent-dashboard.tsx**: Dashboard for parents
 - **institution-dashboard.tsx**: Dashboard for institutions
 
 #### Services Created
@@ -170,7 +170,7 @@ npm run dev:server
 ## Naming Conventions
 
 **File Naming:**
-- All page and component files use `snake_case` (e.g., `parent_dashboard.tsx`, `institution-search.tsx`)
+- All page and component files use `snake_case` (e.g., `parent-dashboard.tsx`, `institution-search.tsx`)
 - Service files use `snake_case` with `.service.ts` suffix (e.g., `auth.service.ts`)
 - Type files use `snake_case` (e.g., `index.ts` in types folder)
 - Configuration files follow their tool's conventions (e.g., `eslint.config.js`)

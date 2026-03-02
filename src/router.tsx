@@ -4,7 +4,7 @@ import InstitutionSearch from './pages/institution/institution-search.tsx';
 import InstitutionDetail from './pages/institution/institution-detail.tsx';
 import Login from './pages/auth/login';
 import Register from './pages/auth/register';
-import ParentDashboard from './pages/parent/parent_dashboard';
+import ParentDashboard from './pages/parent/parent-dashboard.tsx';
 import InstitutionDashboard from './pages/institution/institution-dashboard.tsx';
 
 export const router = createBrowserRouter([
