@@ -6,10 +6,12 @@ import Register from '@/pages/auth/register';
 import InstitutionDashboard from '@/pages/institution/institution-dashboard.tsx';
 import HomePage from '@/pages/shared/home-page.tsx';
 import ParentDashboard from '@/pages/parent/parent-dashboard.tsx';
+import RootLayout from '@/layout.tsx';
 
 export const router = createBrowserRouter([
   {
     path: '/',
+    element: <RootLayout />,
     children: [
       {
         element: <HomePage />,
