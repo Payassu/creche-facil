@@ -3,9 +3,9 @@ import Header from '@/components/shared/header.tsx';
 
 const RootLayout = () => {
   return (
-    <div>
+    <div className="min-h-screen">
       <Header />
-      <main>
+      <main className="flex-1">
         <Outlet />
       </main>
       {/*<Footer />*/}
