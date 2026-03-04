@@ -1,3 +1,6 @@
+import {Search} from "lucide-react";
+import {Button} from "@/components/ui/button.tsx";
+import {Link} from "react-router-dom";
 
 export default function HomePage() {
   return (
@@ -24,8 +27,29 @@ export default function HomePage() {
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-primary-foreground/85 text-pretty">
                 Procura centenas de instituições de cuidados infantis e creches, lê reviews reais de pais, compara instituições, e envia candidaturas diretamente.
             </p>
-        </div>
 
+            <div className="mt-10 flex w-full max-w-2xl flex-col items-center gap-3 sm:flex-row">
+                <div className="relative flex-1 w-full">
+                    <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+                    <input
+                        type="text"
+                        placeholder="Procure na sua cidade, distrito..."
+                        className="h-13 w-full rounded-xl border-0 bg-card pl-12 pr-4 text-card-foreground shadow-lg placeholder:text-muted-foreground focus:ring-2 focus:ring-primary focus:outline-none"
+                        aria-label="Procure instituições e creches"
+                    />
+                </div>
+                <Button
+                    asChild
+                    variant="outline"
+                    className="h-13 rounded-xl px-8 text-accent-foreground shadow-lg hover:bg-accent/90 sm:w-auto"
+                >
+                    <Link to="/search">
+                        <Search className="mr-2 h-4 w-4" />
+                        Procurar
+                    </Link>
+                </Button>
+            </div>
+        </div>
     </section>
   );
 }
