@@ -3,7 +3,7 @@ import Header from '@/components/shared/header.tsx';
 
 const RootLayout = () => {
   return (
-    <div className="min-h-screen">
+    <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-1">
         <Outlet />
