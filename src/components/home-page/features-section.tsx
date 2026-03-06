@@ -36,7 +36,7 @@ const features = [
 
 const FeaturesSection: React.FC = () => {
     return (
-        <section className="bg-card py-20">
+        <section className="bg-card py-20 px-20">
             <div className="text-center">
                 <p className="text-sm font-medium tracking-widest text-primary uppercase">
                     Porquê a Creche-Fácil?
