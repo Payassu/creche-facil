@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import type React from 'react';
+import { useState } from 'react';
 import { Search, SlidersHorizontal } from 'lucide-react';
 import { Label } from '@/components/ui/label.tsx';
 import { Separator } from '@/components/ui/separator.tsx';
 import { Checkbox } from '@/components/ui/checkbox.tsx';
 import { Slider } from '@/components/ui/slider.tsx';
 import { Button } from '@/components/ui/button.tsx';
+import { Input } from '@/components/ui/input.tsx';
 
 const SearchFilters: React.FC = () => {
   const [priceRange, setPriceRange] = useState([200, 1500]);
@@ -21,7 +23,7 @@ const SearchFilters: React.FC = () => {
         </Label>
         <div className="relative mt-2">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-          <input
+          <Input
             type="text"
             id="location-search"
             placeholder="Cidade, código postal, etc."
