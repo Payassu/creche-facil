@@ -8,8 +8,6 @@ import {
   ArrowRight,
   Star,
   MapPin,
-  LayoutDashboard,
-  User,
 } from 'lucide-react';
 import DashboardShell from '@/pages/shared/dashboard-shell.tsx';
 import { Button } from '@/components/ui/button.tsx';
@@ -22,23 +20,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge.tsx';
 import { Progress } from '@/components/ui/progress.tsx';
-
-const parentLinks = [
-  { href: '/parent/dashboard', label: 'Overview', icon: LayoutDashboard },
-  {
-    href: '/parent/dashboard/applications',
-    label: 'Applications',
-    icon: FileText,
-    badge: 3,
-  },
-  {
-    href: '/parent/dashboard/messages',
-    label: 'Messages',
-    icon: MessageCircle,
-    badge: 2,
-  },
-  { href: '/parent/dashboard/profile', label: 'Profile', icon: User },
-];
+import { PARENT_DASHBOARD_LINKS } from '@/constants/parent-dashboard.tsx';
 
 const stats = [
   {
@@ -138,7 +120,7 @@ const statusConfig: Record<
 
 const ParentDashboard: React.FC = () => {
   return (
-    <DashboardShell links={parentLinks}>
+    <DashboardShell links={PARENT_DASHBOARD_LINKS}>
       <div className="flex-1 overflow-y-auto bg-background p-4 lg:p-8">
         <div className="flex flex-col gap-6">
           {/* Welcome */}
